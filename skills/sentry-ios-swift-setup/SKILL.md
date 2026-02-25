@@ -25,6 +25,8 @@ ls -la *.xcodeproj *.xcworkspace Package.swift 2>/dev/null
 
 # Check for existing Sentry installation
 grep -r "sentry-cocoa" Package.swift Package.resolved 2>/dev/null
+
+# Check for legacy CocoaPods installation (deprecated — migrate to SPM)
 grep -i "sentry" Podfile Podfile.lock 2>/dev/null
 
 # Check for existing Sentry imports
@@ -51,13 +53,11 @@ dependencies: [
 
 Or via Xcode: File > Add Package Dependencies > `https://github.com/getsentry/sentry-cocoa`
 
-### Option B: CocoaPods
+### Option B: Pre-built XCFrameworks
 
-```ruby
-pod 'Sentry', '~> 9.0'
-```
+Download the latest release from https://github.com/getsentry/sentry-cocoa/releases and drag the XCFrameworks into your Xcode project.
 
-Then run `pod install`.
+> **Note:** CocoaPods is deprecated and will receive no updates after July 2026. If the project currently uses CocoaPods for Sentry (`pod 'Sentry'`), migrate to Swift Package Manager or XCFrameworks. Remove the Sentry pod from the `Podfile`, run `pod install`, then add the SDK via one of the options above.
 
 ---
 
@@ -338,11 +338,11 @@ SentrySDK.logger.info("Test log from iOS app", attributes: ["test": true])
 2. Check SDK version is 8.55.0+
 3. Verify `beforeSendLog` isn't filtering everything
 
-### Issue: CocoaPods installation fails
-**Solutions:**
-1. Run `pod repo update`
-2. Delete `Podfile.lock` and `Pods/` directory, re-run `pod install`
-3. Ensure minimum iOS deployment target is 13.0+
+### Issue: Project still uses CocoaPods for Sentry
+CocoaPods is deprecated (no updates after July 2026). **Migrate to SPM or XCFrameworks:**
+1. Remove `pod 'Sentry'` from `Podfile` and run `pod install`
+2. Delete `Pods/Sentry*` artifacts if any remain
+3. Add the SDK via Swift Package Manager or XCFrameworks (see Step 1)
 
 ---
 
@@ -352,7 +352,7 @@ SentrySDK.logger.info("Test log from iOS app", attributes: ["test": true])
 ## Sentry iOS Setup Complete
 
 ### Installation:
-- [ ] SDK added via Swift Package Manager or CocoaPods
+- [ ] SDK added via Swift Package Manager or XCFrameworks
 - [ ] SDK version 9.0.0+ installed
 
 ### Configuration Applied:
