@@ -1,11 +1,16 @@
 {
   "name": "sentry",
-  "description": "Sentry Plugin for Cursor to help with debugging including MCP, commands, and skill capabilities.",
+  "description": "USER LEVEL: You pull stack traces, breadcrumbs, and error context into the editor so debugging starts from evidence, not guesswork. PROJECT LEVEL: Production issues link directly to code—agents correlate Sentry events with recent changes to accelerate root-cause analysis. Production debugging in the editor—query Sentry issues and events, inspect stack traces and context, and combine MCP tools with skills and commands. BEST SUITED FOR: • Applications using Sentry for error tracking and performance monitoring • Teams triaging production incidents while coding fixes • Projects where error context needs to flow into pull request descriptions",
   "version": "1.0.0",
   "author": {
     "name": "Sentry"
   },
-  "keywords": ["sentry", "debugging", "monitoring", "error-tracking"],
+  "keywords": [
+    "sentry",
+    "debugging",
+    "monitoring",
+    "error-tracking"
+  ],
   "logo": "assets/logo.svg",
   "license": "MIT",
   "repository": "https://github.com/getsentry/sentry-for-cursor"
